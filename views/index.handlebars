@@ -1,0 +1,122 @@
+    <nav class="navbar">
+        <a href="/" class="nav-brand"><i class="bi bi-menu-button-wide-fill"></i> Service Discovery</a>
+        <div class="nav-right mobile-hide">
+            <a href="/">HOME</a>
+            <a href="#startup-time"><i class="bi bi-check-circle-fill color-green"></i> ONLINE</a>
+        </div>
+    </nav>  
+    <main class="bg-body main-container">
+        <header class="status-header">
+            <div class="row">
+                <h2>System Status</h2>
+            </div>
+            <div class="row-status">
+                <div class="w-100 status-container">
+                    <div class="row status-item">
+                        <p class="status-item-head">Environment</p>
+                        <p class="status-item-data">{{data.env}}</p>
+                    </div>
+                    <div class="row status-item">
+                        <p class="status-item-head">Zone</p>
+                        <p class="status-item-data">{{data.zone}}</p>
+                    </div>
+                    <div class="row status-item">
+                        <p class="status-item-head">Instance ID</p>
+                        <p class="status-item-data">{{data.instance_id}}</p>
+                    </div>
+                    <div class="row status-item">
+                        <p class="status-item-head">Data center</p>
+                        <p class="status-item-data">{{data.datacenter}}</p>
+                    </div>
+                </div>
+                <div class="w-100 status-container">
+                    <div class="row status-item">
+                        <p class="status-item-head">Current time</p>
+                        <p class="status-item-data">{{data.current_time}}</p>
+                    </div>
+                    <div class="row status-item">
+                        <p class="status-item-head">Up time</p>
+                        <p class="status-item-data">{{data.uptime}} Min</p>
+                    </div>
+                    <div class="row status-item">
+                        <p class="status-item-head">Hostname</p>
+                        <p class="status-item-data">{{data.hostname}}</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="mt-3 instances">
+            <div class="row">
+                <h2>Instances currently registered with registry</h2>
+            </div>
+            <table class="mt-2">
+                <thead>
+                    <tr>
+                        <td>Application</td>
+                        <td>(AMI's) Machine</td>
+                        <td>Avaliblity Zones</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each instances}}
+                        {{#each this}}
+                            <tr>
+                                <td>{{serviceName}}</td>
+                                {{#if ami }}
+                                    <td>{{ami}}</td>
+                                {{else}}
+                                    <td>n/a</td>
+                                {{/if}}
+                                {{#if status }}
+                                    <td>(1)</td>
+                                {{else}}
+                                    <td>n/a</td>
+                                {{/if}}
+                                <td>{{status}}(1) - <a href=`{{hostName}}:{{port.$}}`>{{hostName}}:{{port.$}}</a></td>
+                            </tr>
+                        {{/each}}
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-3 instances">
+            <div class="row">
+                <h2>General Info</h2>
+            </div>
+            <table class="mt-2">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Values</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>total-avail-memory</td>
+                        <td>{{data.totalmem}}</td>
+                    </tr>
+                    <tr>
+                        <td>environement</td>
+                        <td>{{data.env}}</td>
+                    </tr>
+                    <tr>
+                        <td>nums-of-cpus</td>
+                        <td>{{data.cpus}}</td>
+                    </tr>
+                    <tr>
+                        <td>current-memory-usage</td>
+                        <td>{{data.freemem}} ({{data.free_mem_percentage}})</td>
+                    </tr>
+                    <tr>
+                        <td>server-up-time</td>
+                        <td>{{data.uptime}} Min</td>
+                    </tr>
+                    <tr>
+                        <td>os-type</td>
+                        <td>{{data.platform}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main> 
