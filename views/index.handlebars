@@ -73,7 +73,7 @@
                                 {{else}}
                                     <td>n/a</td>
                                 {{/if}}
-                                <td>{{status}}(1) - <a href=`{{hostName}}:{{port.$}}`>{{hostName}}:{{port.$}}</a></td>
+                                <td>{{status}}(1) - <a href="http://{{hostName}}:{{port.$}}">{{hostName}}:{{port.$}}</a></td>
                             </tr>
                         {{/each}}
                     {{/each}}
@@ -118,5 +118,6 @@
                     </tr>
                 </tbody>
             </table>
+            {{metadata}}
         </div>
     </main> 
